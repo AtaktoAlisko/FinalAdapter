@@ -1,2 +1,5 @@
-package Adapter;public interface InternalBKSystem {
+package Adapter;
+
+public interface InternalBKSystem {
+    void makeOrder();
 }

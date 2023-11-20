@@ -1,4 +1,4 @@
-package Singelton_Strategy;
+package Singleton_Strategy;
 
 public interface Product {
     String getName();

@@ -1,2 +1,5 @@
-package Adapter;public class StockSystem {
+package Adapter;
+
+public interface StockSystem {
+    void unload();
 }

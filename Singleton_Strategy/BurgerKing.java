@@ -1,4 +1,4 @@
-package Singelton_Strategy;
+package Singleton_Strategy;
 
 import Adapter.*;
 import Decorator.*;
@@ -66,13 +66,13 @@ public class BurgerKing implements InternalBKSystem {
         System.out.println("Неверный выбор сока. Программа завершается.");
         break;
     }
-    basket.addProduct((Product) juice);
+    basket.addProduct(juice);
     System.out.println("Сок готов: " + juice.getName() + ", Цена: " + juice.getPrice());
     return juice;
   }
 
-  public Decorator.Burger chooseBurger(Scanner scanner) {
-    Decorator.Burger burger = new Decorator.BasicBurger("Basic Burger", 2.0);
+  public Burger chooseBurger(Scanner scanner) {
+    Burger burger = new BasicBurger("Basic Burger", 2.0);
 
     while (true) {
       System.out.println("Выберите начинку для бургера:");
@@ -82,8 +82,8 @@ public class BurgerKing implements InternalBKSystem {
 
       int choice = scanner.nextInt();
       switch (choice) {
-        case 1 -> burger = new Decorator.Cheese(burger);
-        case 2 -> burger = new Decorator.Lettuce(burger);
+        case 1 -> burger = new Cheese(burger);
+        case 2 -> burger = new Lettuce(burger);
         case 3 -> {
           System.out.println("Бургер готов: " + burger.getName() + ", Цена: " + burger.getPrice());
           basket.addProduct(burger);
@@ -95,7 +95,7 @@ public class BurgerKing implements InternalBKSystem {
   }
 
   public void getCheck(Client client) {
-    if (client.isVIP()) basket.setLoyaltyDiscount(new VIPCustomerDiscount());
+    if (client.isVIP()) basket.setLoyaltyDiscountStrategy(new VIPCustomerDiscount());
     else basket.setLoyaltyDiscountStrategy(new RegularCustomerDiscount());
 
     System.out.println("Бургеры: " + basket.listBurgers() + " на сумму " + basket.burgersPrice());
